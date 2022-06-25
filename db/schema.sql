@@ -41,10 +41,10 @@ VALUES (1, "Sales Lead", 64000, 1),
 
 INSERT INTO employees (id, first_name, last_name, role_id, manager_id)
 VALUES (1, "Cason", "Smith", 1, 1),
-       (2, "Max", "Carbon", 1, 1),
-       (3, "Bryan", "Tabor", 3, 1),
-       (4, "Nickolas", "Thompson", 3, 1),
-       (5, "Marissa", "McBride", 2, 1),
-       (6, "Elias", "Morgan", 2, 1),
-       (7, "Katlynn", "Ennis", 4, 1),
-       (8, "Luke", "Hamlyn", 4, 1);
+       (2, "Max", "Carbon", 1, NULL),
+       (3, "Bryan", "Tabor", 3, NULL),
+       (4, "Nickolas", "Thompson", 3, 3),
+       (5, "Marissa", "McBride", 2, NULL),
+       (6, "Elias", "Morgan", 2, 5),
+       (7, "Katlynn", "Ennis", 4, 8),
+       (8, "Luke", "Hamlyn", 4, NULL);
