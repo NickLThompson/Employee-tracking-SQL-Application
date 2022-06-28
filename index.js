@@ -28,25 +28,23 @@ const viewAllDepartments = () => {
 const addDepartment = () => {
   inquirer.prompt([
     {
-      name: "addDept",
+      name: "name", // named the input the same as the table field/column "name"
       type: "input",
       message: "What department would you like to add?",
-      validate: addDept => {
-        if (addDept) {
-          return true;
-        }
-      }
+      // validate: name => {
+      //   if (name) {
+      //     return true;
+      //   }
+      // } 
+      // NO NEED TO WORRY ABOUT VALIDATION
     }
   ])
   .then(answer => {
-    const params = [answer.id, answer.name]
-
-    const sql = `INSERT INTO departments (name) VALUES (?);`
-      db.query(sql, answer.addDept, (err, result) => {
+    const sql = `INSERT INTO departments SET ?;` // Changed to SET ? so I can pass the entire object
+      db.query(sql, answer, (err) => { // prepared statement value is the answer object { name: 'WHATEVER DEPT' } it becomes name = 'WHATEVER DEPT'
         if (err) throw err;
-        console.log("Added " + answer.addDept, + " to departments")
-        // const newDept = answer.addDept
-        // params.push(addDept)
+        console.log("Added " + answer.name + " to departments\n")
+        return init();
       })
   })
 }
@@ -118,9 +116,9 @@ const addRole = () => {
 
         db.query(sql, params, (err, result) => {
           if (err) throw err;
-          console.log("Added" + answer.role + " to roles")
+          console.log("Added" + answer.role + " to roles\n");
 
-          viewAllRoles();
+          return init();
         })
       })
     })
@@ -194,7 +192,7 @@ const addEmployee = () => {
         db.query(mySQL, params, (err, result) => {
           if (err) throw err;
           console.log("Employee has been added");
-
+          return init();
 
         })
       })
